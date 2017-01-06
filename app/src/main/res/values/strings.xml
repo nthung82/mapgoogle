@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">NewMyMap</string>
     <string name="title_activity_maps">Map</string>
+    <string-array name="navigation_drawer_items_array">
+        <item>Connect</item>
+        <item>Fixtures</item>
+        <item>Table</item>
+    </string-array>
 </resources>

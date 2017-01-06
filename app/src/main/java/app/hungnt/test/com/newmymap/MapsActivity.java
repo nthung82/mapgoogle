@@ -43,8 +43,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     //**********
     DrawerLayout drawerLayout;
-
+    AutoCompleteTextView searchEditText;
     View drawerView;
+    private ListView mDrawerList;
     //**********
     private GoogleMap mMap;
     String[] languages={"Android ","java","IOS","SQL","JDBC","JDBC2","JDBC3","Web services"};
@@ -64,7 +65,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
 
         mapFragment.getMapAsync(this);
+        searchEditText=(AutoCompleteTextView)findViewById(R.id.searchEditText);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        DataModel[] drawerItem = new DataModel[3];
 
+        drawerItem[0] = new DataModel(R.drawable.common_signin_btn_icon_normal_light, "Map");
+        drawerItem[1] = new DataModel(R.drawable.common_signin_btn_icon_disabled_dark, "Settings");
+        drawerItem[2] = new DataModel(R.drawable.common_signin_btn_icon_normal_dark, "Talk to friends");
+
+
+        DrawerItemCustomAdapter adapter1 = new DrawerItemCustomAdapter(this, R.layout.list_view_item_row, drawerItem);
+        mDrawerList.setAdapter(adapter1);
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+     //   mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+       // drawerLayout.setDrawerListener(mDrawerToggle);
+      //  setupDrawerToggle();
         ImageButton buttonOpenDrawer = (ImageButton)findViewById(R.id.imageButton);
         buttonOpenDrawer.setOnClickListener(new View.OnClickListener(){
 
@@ -110,6 +125,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
     }
+
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+          //  selectItem(position);
+            Toast.makeText(MapsActivity.this,"asdsad",Toast.LENGTH_LONG).show();
+        }
+
+    }
 //TextView mySetting=(TextView)findViewById(R.id.setting);
    // mySetting.OnClickListener
 
@@ -136,14 +161,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         //------
-        int height = 100;
-        int width = 100;
+        int height = 50;
+        int width = 50;
         BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.mipmap.ic_launcher);
         Bitmap b=bitmapdraw.getBitmap();
         Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
         //------
 // create marker
-        MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("1").icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+        final MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("1").icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
 
 // adding marker
         googleMap.addMarker(marker);
@@ -152,7 +177,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double longitude1 = 105.809216;
 
 // create marker
-        MarkerOptions marker1= new MarkerOptions().position(new LatLng(latitude1, longitude1)).title("2").icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+      final  MarkerOptions marker1= new MarkerOptions().position(new LatLng(latitude1, longitude1)).title("2").icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
 
 // adding marker
         googleMap.addMarker(marker1);
@@ -160,7 +185,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double longitude2 = 105.819272;
 
 // create marker
-        MarkerOptions marker2 = new MarkerOptions().position(new LatLng(latitude2, longitude2)).title("3").icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+      final  MarkerOptions marker2 = new MarkerOptions().position(new LatLng(latitude2, longitude2)).title("3").icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
 
 // adding marker
         googleMap.addMarker(marker2);
@@ -170,11 +195,44 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public boolean onMarkerClick(Marker arg0) {
                 if(arg0.getTitle().equals("1")) // if marker source is clicked
-                    Toast.makeText(MapsActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();;//.makeText(MainActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast
+                {
+
+                    Toast.makeText(MapsActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();
+                    int height = 50;
+                    int width = 50;
+                    BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.mipmap.ic_launcher1);
+                    Bitmap b=bitmapdraw.getBitmap();
+                    Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                    marker.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                    mMap.addMarker(marker);
+                    ;//.makeText(MainActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast
+                }
                 if(arg0.getTitle().equals("2")) // if marker source is clicked
-                    Toast.makeText(MapsActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();;//.makeText(MainActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast
+                {
+                    Toast.makeText(MapsActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();
+                    int height = 50;
+                    int width = 50;
+                    BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.mipmap.ic_launcher1);
+                    Bitmap b=bitmapdraw.getBitmap();
+                    Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                    marker1.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                    mMap.addMarker(marker1);
+
+                    ;//.makeText(MainActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast
+                }
                 if (arg0.getTitle().equals("3")) // if marker source is clicked
-                    Toast.makeText(MapsActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();;//.makeText(MainActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast
+                {
+                    Toast.makeText(MapsActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();
+                    int height = 50;
+                    int width = 50;
+                    BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.mipmap.ic_launcher1);
+                    Bitmap b=bitmapdraw.getBitmap();
+                    Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+                    marker2.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                    mMap.addMarker(marker2);
+                    //marker1.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                    ;//.makeText(MainActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast
+                }
                 return true;
             }
 

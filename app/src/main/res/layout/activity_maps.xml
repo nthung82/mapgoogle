@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawer_layout"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
@@ -45,106 +44,46 @@
                 android:id="@+id/searchEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:maxLines="1"
                 android:layout_gravity="center"
                 android:background="@drawable/edittextstyle"
                 android:drawableLeft="@android:drawable/ic_search_category_default"
-                android:drawablePadding="5dp"
-
+                android:drawablePadding="1dp"
                 android:hint="Search key words"
                 />
     </LinearLayout>
     </fragment>
+    <LinearLayout
+        android:id="@+id/footer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="start"
 
+        android:background="@android:color/darker_gray"
+        android:orientation="vertical"
+        android:paddingLeft="1dp" >
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/drawer"
-            android:layout_width="240dp"
+            android:layout_width="180dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:gravity="left"
             android:background="@android:color/darker_gray"
             android:orientation="vertical"
             android:paddingLeft="1dp" >
-    <LinearLayout
-        android:id="@+id/drawer1"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:weightSum="1"
-        android:orientation="horizontal"
-        android:paddingLeft="1dp" >
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.3"
-            android:scaleType="fitStart"
-            android:gravity="left|center"
-            android:src="@mipmap/ic_launcher" />
-        <TextView
-            android:layout_width="0dp"
-            android:gravity="center"
-            android:background="@color/colorAccent"
-            android:layout_height="match_parent"
-            android:layout_weight="0.7"
-            android:text="Map" />
-        </LinearLayout>
-            <LinearLayout
-                android:id="@+id/drawer2"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:weightSum="1"
-                android:orientation="horizontal"
-                android:paddingLeft="1dp" >
-
-                <ImageView
-                    android:layout_width="0dp"
+                <ListView
+                    android:id="@+id/left_drawer"
+                    android:layout_width="240dp"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
                     android:layout_height="match_parent"
-                    android:gravity="left"
-                    android:scaleType="fitStart"
-                    android:layout_weight="0.3"
-                    android:src="@android:drawable/ic_notification_overlay" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent"
-                    android:gravity="center"
-                    android:layout_weight="0.7"
-                    android:onClick="settings"
-                    android:id="@+id/setting"
-                    android:clickable="true"
-                    android:text="Settings" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/drawer3"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="left"
-                android:weightSum="1"
-                android:layout_marginLeft="1dp"
-                android:layout_gravity="left"
-                android:orientation="horizontal"
-                 >
-
-                <ImageView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.3"
-                    android:gravity="left|center"
-                android:layout_gravity="left"
-                    android:scaleType="fitStart"
-
-                    android:src="@mipmap/ic_launcher" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorAccent"
-                    android:gravity="center"
-                    android:layout_weight="0.7"
-                    android:onClick="share"
-                    android:id="@+id/share"
-                    android:clickable="true"
-                    android:text="Talk friends" />
-            </LinearLayout>
+                    android:layout_gravity="start"
+                    android:background="#FAEFFF"
+                    android:choiceMode="singleChoice"
+                     />
         </LinearLayout>
 
     </android.support.v4.widget.DrawerLayout>
