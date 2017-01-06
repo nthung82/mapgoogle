@@ -54,17 +54,9 @@
                 android:hint="Search key words"
                 />
     </LinearLayout>
-    </fragment>
-    <LinearLayout
-        android:id="@+id/footer"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_gravity="start"
 
-        android:background="@android:color/darker_gray"
-        android:orientation="vertical"
-        android:paddingLeft="1dp" >
-        </LinearLayout>
+    </fragment>
+
         <LinearLayout
             android:id="@+id/drawer"
             android:layout_width="180dp"
