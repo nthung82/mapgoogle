@@ -1,8 +1,10 @@
 package app.hungnt.test.com.newmymap;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.provider.*;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
@@ -37,6 +39,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -45,7 +48,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     DrawerLayout drawerLayout;
     AutoCompleteTextView searchEditText;
     View drawerView;
+    TextView txtInfor;
     private ListView mDrawerList;
+    List<MapInfo> list;
+    List<MarkerOptions> markers = new ArrayList<>();
     //**********
     private GoogleMap mMap;
     String[] languages={"Android ","java","IOS","SQL","JDBC","JDBC2","JDBC3","Web services"};
@@ -89,6 +95,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }});
         drawerLayout   = (DrawerLayout)findViewById(R.id.drawer_layout);
         drawerView = (View)findViewById(R.id.drawer);
+        txtInfor=(TextView)findViewById(R.id.info);
         View mapView = mapFragment.getView();
         if (mapView != null && mapView.findViewById(Integer.parseInt("1")) != null) {
             // Get the button view
@@ -131,7 +138,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
           //  selectItem(position);
-            Toast.makeText(MapsActivity.this,"asdsad",Toast.LENGTH_LONG).show();
+           // Toast.makeText(MapsActivity.this,"asdsad",Toast.LENGTH_LONG).show();
+            Intent i = new Intent(MapsActivity.this, Settings.class);
+            startActivity(i);
         }
 
     }
@@ -156,10 +165,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         CameraUpdate cam = CameraUpdateFactory.newCameraPosition(camPos);
         mMap.animateCamera(cam);
         mMap.setMyLocationEnabled(true);
-        double latitude = 21.036770;
-        double longitude = 105.801144;
-
-
         //------
         int height = 50;
         int width = 50;
@@ -167,71 +172,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bitmap b=bitmapdraw.getBitmap();
         Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
         //------
-// create marker
-        final MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("1").icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-
-// adding marker
-        googleMap.addMarker(marker);
-
-        double latitude1 = 21.035280;
-        double longitude1 = 105.809216;
-
-// create marker
-      final  MarkerOptions marker1= new MarkerOptions().position(new LatLng(latitude1, longitude1)).title("2").icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-
-// adding marker
-        googleMap.addMarker(marker1);
-        double latitude2 = 21.035388;
-        double longitude2 = 105.819272;
-
-// create marker
-      final  MarkerOptions marker2 = new MarkerOptions().position(new LatLng(latitude2, longitude2)).title("3").icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-
-// adding marker
-        googleMap.addMarker(marker2);
+        MarkerOptions marker2;
+        list=Callwebservice.getListInfo();
+        for(int i=0;i<list.size();i++){
+            marker2 = new MarkerOptions().position(new LatLng(list.get(i).getLatitude(), list.get(i).getLongitude())).title(list.get(i).getInfo()).icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+            googleMap.addMarker(marker2);
+            markers.add(marker2);
+        }
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener()
         {
 
             @Override
             public boolean onMarkerClick(Marker arg0) {
-                if(arg0.getTitle().equals("1")) // if marker source is clicked
-                {
 
-                    Toast.makeText(MapsActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();
-                    int height = 50;
-                    int width = 50;
-                    BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.mipmap.ic_launcher1);
-                    Bitmap b=bitmapdraw.getBitmap();
-                    Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-                    marker.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-                    mMap.addMarker(marker);
-                    ;//.makeText(MainActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast
-                }
-                if(arg0.getTitle().equals("2")) // if marker source is clicked
-                {
-                    Toast.makeText(MapsActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();
-                    int height = 50;
-                    int width = 50;
-                    BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.mipmap.ic_launcher1);
-                    Bitmap b=bitmapdraw.getBitmap();
-                    Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-                    marker1.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-                    mMap.addMarker(marker1);
 
-                    ;//.makeText(MainActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast
-                }
-                if (arg0.getTitle().equals("3")) // if marker source is clicked
-                {
-                    Toast.makeText(MapsActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();
+                    txtInfor.setText(arg0.getTitle());
                     int height = 50;
                     int width = 50;
-                    BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.mipmap.ic_launcher1);
-                    Bitmap b=bitmapdraw.getBitmap();
+                for(int i=0;i<list.size();i++)
+                if(list.get(i).getInfo().equals(arg0.getTitle())){
+                    BitmapDrawable bitmapdraw = (BitmapDrawable) getResources().getDrawable(R.mipmap.ic_launcher1);
+                    Bitmap b = bitmapdraw.getBitmap();
                     Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-                    marker2.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-                    mMap.addMarker(marker2);
-                    //marker1.icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-                    ;//.makeText(MainActivity.this, arg0.getTitle(), Toast.LENGTH_SHORT).show();// display toast
+                    markers.get(i) .icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                    mMap.addMarker(markers.get(i));
+                    break;
                 }
                 return true;
             }
