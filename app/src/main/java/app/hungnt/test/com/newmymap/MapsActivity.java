@@ -83,9 +83,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         DrawerItemCustomAdapter adapter1 = new DrawerItemCustomAdapter(this, R.layout.list_view_item_row, drawerItem);
         mDrawerList.setAdapter(adapter1);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-     //   mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-       // drawerLayout.setDrawerListener(mDrawerToggle);
-      //  setupDrawerToggle();
+
         ImageButton buttonOpenDrawer = (ImageButton)findViewById(R.id.imageButton);
         buttonOpenDrawer.setOnClickListener(new View.OnClickListener(){
 
@@ -137,15 +135,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-          //  selectItem(position);
-           // Toast.makeText(MapsActivity.this,"asdsad",Toast.LENGTH_LONG).show();
             Intent i = new Intent(MapsActivity.this, Settings.class);
             startActivity(i);
         }
 
     }
-//TextView mySetting=(TextView)findViewById(R.id.setting);
-   // mySetting.OnClickListener
+
 
     /**
      * Manipulates the map once available.
