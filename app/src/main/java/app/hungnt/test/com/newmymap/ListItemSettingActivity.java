@@ -18,7 +18,7 @@ import android.widget.Toast;
  * Created by hungnt on 1/9/17.
  */
 
-public class Settings extends AppCompatActivity {
+public class ListItemSettingActivity extends AppCompatActivity {
     ListView listView ;
 
     String[] values = new String[] { "Map",
@@ -31,8 +31,6 @@ public class Settings extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listSettings);
         //-------------
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
-     /*   SettingsAdapter customAdapter = new SettingsAdapter(getApplicationContext(), values);
-        // Assign adapter to ListView*/
         listView.setAdapter(adapter);
         //-------------
 
@@ -45,11 +43,8 @@ public class Settings extends AppCompatActivity {
                 int itemPosition     = position;
                 String  itemValue    = (String) listView.getItemAtPosition(position);
 
-
-
-                //for(int i=0;i<values.length;i++)
 if(itemValue.equals(values[0])){
-    Intent intent = new Intent(Settings.this, MapActivity.class);
+    Intent intent = new Intent(ListItemSettingActivity.this, MapActivity.class);
     startActivity(intent);
 }
             }
@@ -57,8 +52,9 @@ if(itemValue.equals(values[0])){
         });
     }
     public void show1(View v){
-        Toast.makeText(Settings.this,"asd",Toast.LENGTH_SHORT).show();
+        Toast.makeText(ListItemSettingActivity.this,"asd",Toast.LENGTH_SHORT).show();
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Take appropriate action for each action item click

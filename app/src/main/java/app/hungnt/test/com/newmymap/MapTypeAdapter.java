@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -17,11 +18,12 @@ public class MapTypeAdapter extends BaseAdapter{
     String[] questionsList;
     LayoutInflater inflter;
     public  String []maptyes;
-
-    public MapTypeAdapter(Context applicationContext, String[] questionsList) {
+    TextView txtItemValue;
+    public MapTypeAdapter(Context applicationContext, String[] questionsList, TextView txtItemValue) {
         this.applicationContext = applicationContext;
         this.questionsList = questionsList;
         this.maptyes=questionsList;
+        this.txtItemValue=txtItemValue;
         inflter = (LayoutInflater.from(applicationContext));
     }
     @Override
@@ -48,7 +50,11 @@ public class MapTypeAdapter extends BaseAdapter{
         radioMapType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Toast.makeText(applicationContext,buttonView.getText().toString(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(applicationContext,buttonView.getText().toString(),Toast.LENGTH_SHORT).show();
+                new SaveConfiguration(applicationContext).save(Constant.MAP_TYPE_KEY,buttonView.getText().toString());
+                txtItemValue.setText(buttonView.getText().toString());
+              //MaptDialogTypeFragment  xx=applicationContext.
+
             }
         });
         return view;

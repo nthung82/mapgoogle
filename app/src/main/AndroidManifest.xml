@@ -40,7 +40,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Settings"
+        <activity android:name=".ListItemSettingActivity"
             android:theme="@style/AppTheme"/>
         <activity android:name=".MapActivity"
             android:theme="@style/AppTheme"/>

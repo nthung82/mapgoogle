@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by hungnt on 1/10/17.
@@ -18,7 +19,7 @@ import android.widget.TextView;
 
 public class MapActivity extends  AppCompatActivity{
     ListView listView ;
-
+TextView txtItemValue;
     String[] listItemName = new String[] { "Map type",
             "Maximum visible aircraft","My location"
     };
@@ -29,7 +30,7 @@ public class MapActivity extends  AppCompatActivity{
         listView = (ListView) findViewById(R.id.listSettings);
         //-------------
         SettingsAdapter settingAdapter = new SettingsAdapter(getApplicationContext(), listItemName,listItemValue);
-        // Assign adapter to ListView
+
         listView.setAdapter(settingAdapter);
         //-------------
 
@@ -48,15 +49,20 @@ public class MapActivity extends  AppCompatActivity{
                 /// Show Alert
                 TextView txtItemName=(TextView)view.findViewById(R.id.settingName);
                 String itemName=txtItemName.getText().toString();
-
+                txtItemValue=(TextView)view.findViewById(R.id.settingValue);
                     if(itemName.equals(listItemName[0])){
                         android.app.FragmentManager fm = getFragmentManager();
                         MaptDialogTypeFragment dialogFragment = new MaptDialogTypeFragment ();
-
+                        MaptDialogTypeFragment.txtItemValue=txtItemValue;
                         dialogFragment.show(fm, "Sample Fragment");
                     }
             }
 
         });
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        Toast.makeText(this,"Quit",Toast.LENGTH_LONG).show();
     }
 }
