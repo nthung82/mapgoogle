@@ -199,6 +199,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
 
     }
+    @Override
+    public void onResume(){
+        super.onResume();
+        if(null!=mMap) {
+            String mapType=new Ultil(this).getValueByKey(Constant.MAP_TYPE_KEY);
+            //public static final String []LIST_MAP_TYPE={"Normal","Terrain","Satellite","Hybrid"};
+            if("".equals(mapType)||Constant.LIST_MAP_TYPE[0].equals(mapType))
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+
+            else if(Constant.LIST_MAP_TYPE[1].equals(mapType))
+                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+
+            else if(Constant.LIST_MAP_TYPE[2].equals(mapType))
+                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+
+            else if(Constant.LIST_MAP_TYPE[3].equals(mapType))
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        }
+        //Toast.makeText(this,"Resume",Toast.LENGTH_SHORT).show();
+    }
 //*****
 public void settings(View v){
 Toast.makeText(this,"Settings",Toast.LENGTH_LONG).show();

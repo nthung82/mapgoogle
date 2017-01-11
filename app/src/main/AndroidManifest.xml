@@ -42,7 +42,7 @@
         </activity>
         <activity android:name=".ListItemSettingActivity"
             android:theme="@style/AppTheme"/>
-        <activity android:name=".MapActivity"
+        <activity android:name=".MapSettingActivity"
             android:theme="@style/AppTheme"/>
     </application>
 

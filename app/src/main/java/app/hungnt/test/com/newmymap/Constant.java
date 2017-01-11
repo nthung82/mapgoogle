@@ -7,4 +7,5 @@ package app.hungnt.test.com.newmymap;
 public class Constant {
     public static final String FILE_CONFIGURATION="CONFIGURATION";
     public static final String MAP_TYPE_KEY="Key_Map_Type";
+    public static final String []LIST_MAP_TYPE={"Normal","Terrain","Satellite","Hybrid"};
 }

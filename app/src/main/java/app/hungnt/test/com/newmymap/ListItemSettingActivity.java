@@ -1,12 +1,9 @@
 package app.hungnt.test.com.newmymap;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,6 +27,17 @@ public class ListItemSettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         listView = (ListView) findViewById(R.id.listSettings);
         //-------------
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tToolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.search);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, android.R.id.text1, values);
         listView.setAdapter(adapter);
         //-------------
@@ -44,7 +52,7 @@ public class ListItemSettingActivity extends AppCompatActivity {
                 String  itemValue    = (String) listView.getItemAtPosition(position);
 
 if(itemValue.equals(values[0])){
-    Intent intent = new Intent(ListItemSettingActivity.this, MapActivity.class);
+    Intent intent = new Intent(ListItemSettingActivity.this, MapSettingActivity.class);
     startActivity(intent);
 }
             }

@@ -7,10 +7,10 @@ import android.content.SharedPreferences;
  * Created by hungnt on 1/10/17.
  */
 
-public class SaveConfiguration {
+public class Ultil {
     Context context;
     SharedPreferences sharedpreferences;
-    public SaveConfiguration(Context context){
+    public Ultil(Context context){
         this.context=context;
         sharedpreferences = context.getSharedPreferences(Constant.FILE_CONFIGURATION, Context.MODE_PRIVATE);
     }
