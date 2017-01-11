@@ -79,7 +79,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         drawerItem[1] = new DataModel(R.drawable.common_signin_btn_icon_disabled_dark, "Settings");
         drawerItem[2] = new DataModel(R.drawable.common_signin_btn_icon_normal_dark, "Talk to friends");
 
-
         DrawerItemCustomAdapter adapter1 = new DrawerItemCustomAdapter(this, R.layout.list_view_item_row, drawerItem);
         mDrawerList.setAdapter(adapter1);
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
@@ -135,8 +134,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Intent i = new Intent(MapsActivity.this, ListItemSettingActivity.class);
-            startActivity(i);
+            if(1==position)
+            {
+                Intent i = new Intent(MapsActivity.this, ListItemSettingActivity.class);
+                startActivity(i);
+
+            }
+            else if(2==position)
+            {
+Ultil.share(Constant.URL,"Share infor",MapsActivity.this);
+            }
+            drawerLayout.closeDrawer(drawerView);
         }
 
     }
@@ -154,7 +162,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         LatLng NewYork= new LatLng( 21.028511, 105.804817);
         CameraPosition camPos = new CameraPosition.Builder().target(NewYork).zoom(14).build();
         CameraUpdate cam = CameraUpdateFactory.newCameraPosition(camPos);
@@ -191,6 +198,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
                     markers.get(i) .icon(BitmapDescriptorFactory.fromBitmap(smallMarker));
                     mMap.addMarker(markers.get(i));
+                  //  Ultil.hiddenKeyboard(getParent());
                     break;
                 }
                 return true;
@@ -220,11 +228,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Toast.makeText(this,"Resume",Toast.LENGTH_SHORT).show();
     }
 //*****
-public void settings(View v){
-Toast.makeText(this,"Settings",Toast.LENGTH_LONG).show();
-}
+
     public void share(View v){
-        Toast.makeText(this,"Share",Toast.LENGTH_LONG).show();
+        Ultil.share(Constant.URL,"Share infor",MapsActivity.this);
 
     }
     //**************
@@ -261,7 +267,6 @@ Toast.makeText(this,"Settings",Toast.LENGTH_LONG).show();
                 default:
                     state = "unknown!";
             }
-
-            //textPrompt2.setText(state);
         }};
+    //-------
 }

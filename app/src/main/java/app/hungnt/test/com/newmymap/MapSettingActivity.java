@@ -48,16 +48,17 @@ TextView txtItemValue;
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-
-                TextView txtItemName=(TextView)view.findViewById(R.id.settingName);
-                String itemName=txtItemName.getText().toString();
-                txtItemValue=(TextView)view.findViewById(R.id.settingValue);
-                    if(itemName.equals(listItemName[0])){
-                        android.app.FragmentManager fm = getFragmentManager();
-                        MapTypeDialogFragment dialogFragment = new MapTypeDialogFragment();
-                        dialogFragment.show(fm, "dialog_maptype");
-                    }
-                if(position==2){
+if(position<2) {
+    TextView txtItemName = (TextView) view.findViewById(R.id.settingName);
+    String itemName = txtItemName.getText().toString();
+    txtItemValue = (TextView) view.findViewById(R.id.settingValue);
+    if (itemName.equals(listItemName[0])) {
+        android.app.FragmentManager fm = getFragmentManager();
+        MapTypeDialogFragment dialogFragment = new MapTypeDialogFragment();
+        dialogFragment.show(fm, "dialog_maptype");
+    }
+}
+                else{
                     Toast.makeText(MapSettingActivity.this,"2342342",Toast.LENGTH_SHORT).show();
                 }
             }

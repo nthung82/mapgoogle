@@ -16,12 +16,14 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:id="@+id/share"
-android:layout_marginRight="1dp"
+            android:onClick="share"
+            android:layout_marginRight="1dp"
             android:src="@android:drawable/ic_menu_share"
             android:layout_weight="0.2" />
     <TextView
         android:text="TextView"
         android:layout_width="0dp"
+        android:textSize="18sp"
         android:background="@color/colorPrimary"
         android:layout_height="match_parent"
         android:id="@+id/info"
