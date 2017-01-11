@@ -18,19 +18,18 @@ import android.widget.Toast;
 public class ListItemSettingActivity extends AppCompatActivity {
     ListView listView ;
 
-    String[] values = new String[] { "Map",
+    String[] values ;/*= new String[] { "Map",
             "Data consumption"
-    };
+    };*/
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
         listView = (ListView) findViewById(R.id.listSettings);
         //-------------
-
+        values=getResources().getStringArray(R.array.list_settings);
         Toolbar toolbar = (Toolbar) findViewById(R.id.tToolbar);
         setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.search);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

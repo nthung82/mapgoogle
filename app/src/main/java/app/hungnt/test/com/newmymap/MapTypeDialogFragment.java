@@ -17,9 +17,9 @@ import android.widget.TextView;
  * Created by hungnt on 1/10/17.
  */
 
-public class MaptDialogTypeFragment extends DialogFragment {
+public class MapTypeDialogFragment extends DialogFragment {
     ListView listViewMaptype;
-    //static TextView txtItemValue;
+
     OnListener listener;
     //-------------
     public interface OnListener {
