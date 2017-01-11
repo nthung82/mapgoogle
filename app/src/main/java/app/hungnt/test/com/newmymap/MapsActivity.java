@@ -395,7 +395,7 @@ Log.i("test",data);
             String data = "";
 
             // Obtain browser key from https://code.google.com/apis/console
-            String key = "key=AIzaSyDj2WqKAM8CPYs3kY1FPnpgSCwNOEtl3xM";
+            String key = "key=XXX";
 
             String input="";
 
