@@ -24,7 +24,7 @@
             android:paddingTop="2dp"
             android:gravity="center"
             android:src="@drawable/search"/>
-        <AutoCompleteTextView
+        <app.hungnt.test.com.newmymap.CustomAutoCompleteTextView
             android:id="@+id/searchEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
